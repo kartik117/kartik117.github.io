@@ -1,0 +1,211 @@
+/* ─────────────────────────────────────────────────────────────
+   Apple-style Contact Section (v2-apple)
+   Minimal centered closer — big heading, email CTA, social icons.
+   ───────────────────────────────────────────────────────────── */
+
+.apple-contact {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #000000;
+  padding: 160px 24px 140px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #f5f5f7;
+  z-index: 5;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Ambient stage glow — soft Apple blue radial behind the content */
+.apple-contact-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 40% 50% at 50% 50%,
+    rgba(0, 113, 227, 0.16) 0%,
+    rgba(0, 198, 255, 0.06) 30%,
+    transparent 60%
+  );
+  z-index: 0;
+}
+
+.apple-contact-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.apple-contact .apple-eyebrow {
+  margin-bottom: 24px;
+}
+
+/* ─── Heading ───────────────────────────────────────────── */
+
+.apple-contact-title {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #c8c8cd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-wrap: balance;
+}
+
+.apple-contact-subtitle {
+  font-size: clamp(17px, 1.5vw, 20px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #86868b;
+  margin: 24px 0 48px;
+  letter-spacing: -0.005em;
+  max-width: 540px;
+}
+
+/* ─── Email CTA ─────────────────────────────────────────── */
+
+.apple-contact-email-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  font-size: clamp(15px, 1.6vw, 17px);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: #ffffff;
+  background: linear-gradient(180deg, #0a7cff 0%, #0058c8 100%);
+  border-radius: 980px;
+  text-decoration: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 10px 32px rgba(0, 113, 227, 0.4);
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  margin-bottom: 56px;
+}
+
+.apple-contact-email-cta svg {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-contact-email-cta:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 16px 44px rgba(0, 113, 227, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.apple-contact-email-cta:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* ─── Socials ───────────────────────────────────────────── */
+
+.apple-contact-socials {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 52px;
+}
+
+.apple-social-btn {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: #f5f5f7;
+  text-decoration: none;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.apple-social-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(0, 113, 227, 0.16);
+  border-color: rgba(41, 151, 255, 0.5);
+  color: #ffffff;
+  box-shadow:
+    0 12px 30px rgba(0, 113, 227, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+/* ─── Location footer ───────────────────────────────────── */
+
+.apple-contact-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #6e6e73;
+  letter-spacing: -0.005em;
+}
+
+.apple-contact-location svg {
+  color: #4a4a4e;
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .apple-contact {
+    padding: 110px 20px 96px;
+  }
+  .apple-contact-email-cta {
+    padding: 14px 22px;
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+    margin-bottom: 44px;
+  }
+  .apple-contact-subtitle {
+    margin: 20px 0 36px;
+  }
+  .apple-contact-socials {
+    margin-bottom: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .apple-contact {
+    padding: 80px 16px 72px;
+  }
+  .apple-contact-email-cta {
+    font-size: 14px;
+    padding: 13px 18px;
+  }
+  .apple-social-btn {
+    width: 44px;
+    height: 44px;
+  }
+}

@@ -1,0 +1,321 @@
+/* ─────────────────────────────────────────────────────────────
+   Apple-style Skills Section (v2-apple)
+   3D orbiting tag cloud + bento grid of category cards.
+   Reuses .apple-eyebrow / .apple-section-title from AboutSection.css.
+   ───────────────────────────────────────────────────────────── */
+
+.apple-skills {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #000000;
+  padding: 140px 24px 120px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #f5f5f7;
+  z-index: 8;
+  overflow: hidden;
+}
+
+.apple-skills-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.apple-skills .apple-about-header {
+  margin-bottom: 48px;
+}
+
+/* ─── 3D Cloud Container ────────────────────────────────── */
+
+.apple-skill-cloud-container {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  margin: 0 auto 96px;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, rgba(255,255,255,0.025) 0%, transparent 70%),
+    rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: crosshair;
+}
+
+.apple-skill-cloud-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.apple-skill-cloud-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 45% 40% at 50% 50%,
+    rgba(0, 113, 227, 0.20) 0%,
+    rgba(0, 198, 255, 0.06) 35%,
+    transparent 65%
+  );
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+.apple-skill-cloud-edge {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 100% 100% at 50% 50%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 2;
+}
+
+/* ─── Bento Grid ────────────────────────────────────────── */
+
+.apple-skill-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "de de ml ml"
+    "da da da da"
+    "fe be tools tools";
+  gap: 16px;
+}
+
+/* ─── Bento Card ────────────────────────────────────────── */
+
+.apple-skill-bento-card {
+  position: relative;
+  padding: 28px 28px 26px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  overflow: hidden;
+  isolation: isolate; /* contain tint gradient to card */
+  transition:
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* Per-card tint colors — each draws its identity from an Apple system color */
+.apple-skill-bento-card[data-tint="blue"]   { --tint: 10, 124, 255; }
+.apple-skill-bento-card[data-tint="purple"] { --tint: 149, 100, 254; }
+.apple-skill-bento-card[data-tint="teal"]   { --tint: 64, 200, 224; }
+.apple-skill-bento-card[data-tint="pink"]   { --tint: 255, 89, 130; }
+.apple-skill-bento-card[data-tint="green"]  { --tint: 48, 209, 88; }
+.apple-skill-bento-card[data-tint="silver"] { --tint: 180, 180, 195; }
+
+/* Tinted radial wash in the top-right corner */
+.apple-skill-bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 90% 60% at 100% 0%,
+    rgba(var(--tint), 0.18) 0%,
+    rgba(var(--tint), 0.06) 30%,
+    transparent 60%
+  );
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Highlight edge — drawn via mask compositing */
+.apple-skill-bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--tint), 0.45) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(var(--tint), 0.12) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.55;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-skill-bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--tint), 0.32);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 18px 48px rgba(var(--tint), 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+.apple-skill-bento-card:hover::before {
+  opacity: 1.4;
+}
+
+.apple-skill-bento-card:hover::after {
+  opacity: 1;
+}
+
+/* ─── Card header ───────────────────────────────────────── */
+
+.apple-skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.apple-skill-card-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--tint), 0.12);
+  border: 1px solid rgba(var(--tint), 0.25);
+  color: rgb(var(--tint));
+  transition:
+    background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Slightly brighten icon on hover */
+.apple-skill-bento-card:hover .apple-skill-card-icon {
+  background: rgba(var(--tint), 0.2);
+  border-color: rgba(var(--tint), 0.4);
+}
+
+.apple-skill-card-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.apple-skill-card-title {
+  font-size: 19px;
+  font-weight: 600;
+  color: #f5f5f7;
+  letter-spacing: -0.018em;
+  line-height: 1.1;
+}
+
+.apple-skill-card-tagline {
+  font-size: 13px;
+  font-weight: 400;
+  color: #86868b;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+
+/* ─── Pills inside cards ────────────────────────────────── */
+
+.apple-skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.apple-skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 13px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #d8d8dd;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  cursor: default;
+  transition:
+    transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.apple-skill-pill:hover {
+  background: rgba(var(--tint), 0.16);
+  border-color: rgba(var(--tint), 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  .apple-skills {
+    padding: 100px 20px 80px;
+  }
+  .apple-skill-cloud-container {
+    height: 400px;
+    margin-bottom: 72px;
+  }
+  /* Collapse bento to 2 cols, FE/BE share row, Tools full row */
+  .apple-skill-bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "de ml"
+      "da da"
+      "fe be"
+      "tools tools";
+  }
+  .apple-skill-card-title { font-size: 17px; }
+}
+
+@media (max-width: 600px) {
+  .apple-skills {
+    padding: 80px 16px 64px;
+  }
+  .apple-skill-cloud-container {
+    height: 320px;
+    margin-bottom: 56px;
+    border-radius: 20px;
+  }
+  /* Single column on mobile */
+  .apple-skill-bento {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "de"
+      "ml"
+      "da"
+      "fe"
+      "be"
+      "tools";
+  }
+  .apple-skill-bento-card {
+    padding: 22px 22px 20px;
+    gap: 18px;
+  }
+  .apple-skill-pill {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

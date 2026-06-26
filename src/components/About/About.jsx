@@ -1,152 +1,232 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FiTarget, FiFeather, FiCompass, FiBookOpen, FiArrowUpRight } from 'react-icons/fi';
 import './About.css';
 
-const timeline = [
+const APPLE_EASE = [0.25, 0.46, 0.45, 0.94];
+
+// Long-form narrative split into clean chapters. The dedicated /about
+// page goes deeper than the home About section — full journey + strengths.
+const JOURNEY_CHAPTERS = [
   {
-    date: 'Jun 2025 – Aug 2025',
-    title: 'Software Developer Intern, Commonwealth of Massachusetts',
-    points: [
-      'Modernized a distributed enterprise search platform by migrating legacy IIS services to AWS Lambda and REST APIs with OpenSearch, cutting search latency by ~40%',
-      'Built event-driven data ingestion pipelines using AWS Lambda and SQS, processing 1M+ records across 5 integrated systems for near-real-time indexing',
-      'Implemented structured logging and CloudWatch metrics, reducing production incident MTTR by ~20%',
-    ],
+    year: '2018 — 2022',
+    title: 'The foundation.',
+    body:
+      'I found my footing during my undergraduate Computer Engineering degree at the University of Mumbai: data structures, databases, distributed systems, and the satisfaction of shipping code that actually runs.',
   },
   {
-    date: 'Aug 2023 – Jun 2024',
-    title: 'Software Engineer, Tata Consultancy Services',
-    points: [
-      'Spearheaded an org-wide observability initiative using OpenTelemetry and Prometheus with NLP-based log parsing for anomaly detection across 100+ services, cutting troubleshooting time by 80%',
-      'Architected a Kafka self-serve internal developer platform (Spring Boot + Python), eliminating a JIRA-driven admin bottleneck and reducing provisioning time by 90%',
-      'Automated Kubernetes secrets rotation with HashiCorp Vault Agent as a sidecar, preventing 150K+ annual security incidents',
-    ],
+    year: '2021 — 2022',
+    title: 'Software reached real users.',
+    body:
+      'At DY Patil University School of Dentistry, I built web applications that modernized clinical record-keeping workflows. It was my first taste of software helping real people move faster.',
   },
   {
-    date: 'Jul 2022 – Aug 2023',
-    title: 'Junior Software Engineer, Tata Consultancy Services',
-    points: [
-      'Built an ETL pipeline automating terabytes of compliance data transfer to S3 Glacier Deep Archive, saving $1.2M annually in storage costs',
-      'Delivered pipeline orchestration with AWS Lambda and Step Functions for compliance case management, reducing manual workload by 95%',
-      'Authored an automated test suite (pytest + moto) achieving 90%+ coverage on AWS Lambda/Step Functions pipelines',
-    ],
+    year: '2022 — 2024',
+    title: 'Enterprise systems at scale.',
+    body:
+      'At Tata Consultancy Services, I worked across REST and gRPC APIs, Kafka-based event pipelines, AKS-deployed microservices, observability, secrets rotation, and AWS serverless automation. That feedback loop gave me production instincts quickly.',
   },
   {
-    date: 'Aug 2020 – Mar 2021',
-    title: 'Full Stack Developer, DY Patil University',
-    points: [
-      'Launched a student transcript management portal (Django + PostgreSQL + Angular/TypeScript) for 5,000+ students and alumni',
-      'Built an ML-based course recommendation engine (collaborative filtering, scikit-learn) wired into Zoho CRM via FastAPI + Lambda webhooks, improving enrollment conversion from 18% to 35%',
-    ],
+    year: '2024 — 2026',
+    title: 'A deeper technical reset.',
+    body:
+      'I moved to the US for my Master\'s in Computer Science at Syracuse University, going deeper on distributed systems, cloud-native architecture, AI engineering, and the kind of project work that stretches every layer of the stack.',
+  },
+  {
+    year: '2025',
+    title: 'Government-scale AI workflows.',
+    body:
+      'At the Commonwealth of Massachusetts, I worked on enterprise search and document-processing systems with AWS Lambda, SQS, OpenSearch, Bedrock, ECS Fargate, RAGAS, and LangSmith.',
+  },
+  {
+    year: 'Now',
+    title: 'Production-grade AI and distributed systems.',
+    body:
+      'I am building systems like PA-Flow, PulsePay, PNWater, MedFineTune, IntelliPatch, and RepoMind: multi-agent AI, event-driven backends, lakehouse pipelines, graph RAG, and cloud-native infrastructure.',
   },
 ];
 
-const skillCategories = [
+const STRENGTHS = [
   {
-    title: 'Programming',
-    skills: ['Python', 'Java', 'C#', 'Go', 'SQL', 'JavaScript', 'TypeScript', 'React', 'Node.js', 'GraphQL'],
+    icon: FiTarget,
+    title: 'Systems thinker.',
+    body:
+      'I design for failure, scale, and maintainability. Circuit breakers, dead letter queues, idempotency, tracing, and rollback paths matter as much as the happy path.',
+    tint: 'blue',
   },
   {
-    title: 'ML / AI',
-    skills: ['PyTorch', 'Transformers', 'LangChain', 'RAG', 'Agentic AI', 'FastAPI', 'Spring Boot'],
+    icon: FiFeather,
+    title: 'AI engineer.',
+    body:
+      'I build production AI systems: multi-agent pipelines, hybrid RAG retrieval, LLM evaluation, fine-tuned models, and interfaces that make the workflow useful.',
+    tint: 'pink',
   },
   {
-    title: 'Data & Distributed Systems',
-    skills: ['PostgreSQL', 'MongoDB', 'Neo4j', 'DuckDB', 'Redis', 'Kafka', 'Spark', 'Delta Lake', 'Airflow'],
+    icon: FiCompass,
+    title: 'Cloud-native builder.',
+    body:
+      'AWS, Azure, GCP, Kubernetes, Terraform, and CI/CD are part of my everyday toolkit. I deploy systems to the cloud, not just localhost.',
+    tint: 'purple',
   },
   {
-    title: 'Cloud & Tools',
-    skills: ['AWS', 'Azure', 'Kubernetes', 'Docker', 'Databricks', 'Elasticsearch', 'Jenkins', 'Terraform'],
+    icon: FiBookOpen,
+    title: 'Continuous learner.',
+    body:
+      'Six cloud and AI certifications keep me honest: GCP ACE, AWS, Confluent, Kubernetes, Claude Certified Architect, and Vertex AI.',
+    tint: 'green',
   },
-];
-
-const certifications = [
-  'AWS Certified Solutions Architect – Associate',
-  'AWS Certified AI Practitioner',
-  'Confluent Data Streaming Engineer',
-  'HashiCorp Terraform Associate',
 ];
 
 const About = () => {
   return (
-    <motion.div
-      className="about-container"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="page-header">
-        <span className="section-tag">ABOUT</span>
-        <h2 className="page-heading">About Me</h2>
-      </div>
+    <div className="apple-about-page">
+      {/* ─── Hero ──────────────────────────────────────────── */}
+      <section className="apple-about-page-hero">
+        <div className="apple-about-page-glow" aria-hidden="true" />
 
-      <div className="about-content">
-        <p className="intro-text">
-          Full-stack engineer with 3 years of experience building scalable Java/Spring Boot
-          and serverless applications with RESTful APIs and modern JavaScript frameworks.
-        </p>
-        <p>
-          I've focused on automation and observability on AWS — using Lambda, OpenSearch,
-          and CI/CD pipelines to improve reliability and reduce latency — including a
-          distributed search migration that cut latency by 40%. Outside of work, I build
-          and ship complete, real, end-to-end software projects on my own: multi-agent LLM
-          pipelines, data-engineering lakehouses, and developer-tooling integrations.
-        </p>
+        <div className="apple-about-page-hero-inner">
+          <motion.div
+            className="apple-about-page-hero-content"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: APPLE_EASE }}
+          >
+            <span className="apple-eyebrow">About</span>
+            <h1 className="apple-about-page-title">
+              Software Engineer,{' '}
+              <span className="apple-title-muted">building production AI.</span>
+            </h1>
+            <p className="apple-about-page-lead">
+              I'm Kartik — a Software Engineer focused on AI/GenAI systems,
+              distributed backends, and full-stack products that survive real
+              production constraints.
+            </p>
+            <p className="apple-about-page-lead-secondary">
+              Master's in Computer Science at Syracuse University. Previously
+              at the Commonwealth of Massachusetts, Tata Consultancy Services,
+              and DY Patil University.
+            </p>
+          </motion.div>
 
-        <h3 className="section-subheading">Education</h3>
-        <div className="education-list">
-          <div className="education-item">
-            <div>
-              <h4>Syracuse University</h4>
-              <p>Master's, Computer Science</p>
-            </div>
-            <span className="education-date">Aug 2024 – May 2026</span>
+          <motion.div
+            className="apple-about-page-headshot"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.1, delay: 0.2, ease: APPLE_EASE }}
+          >
+            <div className="apple-about-page-headshot-glow" aria-hidden="true" />
+            <img src="/images/headshot.png" alt="Kartik Bamble" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── Journey ───────────────────────────────────────── */}
+      <section className="apple-about-page-journey">
+        <div className="apple-about-page-section-inner">
+          <motion.div
+            className="apple-about-page-section-header"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.9, ease: APPLE_EASE }}
+          >
+            <span className="apple-eyebrow">Journey</span>
+            <h2 className="apple-section-title">
+              From the first line{' '}
+              <span className="apple-title-muted">to now.</span>
+            </h2>
+          </motion.div>
+
+          <div className="apple-about-page-chapters">
+            {JOURNEY_CHAPTERS.map((c, i) => (
+              <motion.article
+                key={c.year}
+                className="apple-about-page-chapter"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.9,
+                  delay: i * 0.05,
+                  ease: APPLE_EASE,
+                }}
+              >
+                <div className="apple-about-page-chapter-year">{c.year}</div>
+                <div className="apple-about-page-chapter-body">
+                  <h3>{c.title}</h3>
+                  <p>{c.body}</p>
+                </div>
+              </motion.article>
+            ))}
           </div>
-          <div className="education-item">
-            <div>
-              <h4>University of Mumbai</h4>
-              <p>Bachelor of Engineering, Computer Science</p>
-            </div>
-            <span className="education-date">Jun 2018 – May 2022</span>
+        </div>
+      </section>
+
+      {/* ─── Strengths ─────────────────────────────────────── */}
+      <section className="apple-about-page-strengths">
+        <div className="apple-about-page-section-inner">
+          <motion.div
+            className="apple-about-page-section-header"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.9, ease: APPLE_EASE }}
+          >
+            <span className="apple-eyebrow">Strengths</span>
+            <h2 className="apple-section-title">
+              What I bring{' '}
+              <span className="apple-title-muted">to the table.</span>
+            </h2>
+          </motion.div>
+
+          <div className="apple-about-page-strengths-grid">
+            {STRENGTHS.map(({ icon: Icon, title, body, tint }, i) => (
+              <motion.div
+                key={title}
+                className="apple-about-page-strength-card"
+                data-tint={tint}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.9,
+                  delay: i * 0.08,
+                  ease: APPLE_EASE,
+                }}
+              >
+                <div className="apple-about-page-strength-icon" aria-hidden="true">
+                  <Icon size={20} strokeWidth={1.8} />
+                </div>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
+      </section>
 
-        <h3 className="section-subheading">Experience</h3>
-        <div className="timeline">
-          {timeline.map((item) => (
-            <div className="timeline-item" key={item.title}>
-              <div className="timeline-dot"></div>
-              <div className="timeline-date">{item.date}</div>
-              <div className="timeline-content">
-                <h4>{item.title}</h4>
-                {item.points.map((point) => (
-                  <p key={point}>{point}</p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <h3 className="section-subheading">Skills</h3>
-        <div className="skills-categories">
-          {skillCategories.map((cat) => (
-            <div className="skills-category" key={cat.title}>
-              <h4>{cat.title}</h4>
-              <div className="skills-grid">
-                {cat.skills.map((skill) => (
-                  <span className="skill-item" key={skill}>{skill}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <h3 className="section-subheading">Certifications</h3>
-        <div className="cert-list">
-          {certifications.map((cert) => (
-            <span className="cert-item" key={cert}>{cert}</span>
-          ))}
-        </div>
-      </div>
-    </motion.div>
+      {/* ─── CTA ───────────────────────────────────────────── */}
+      <section className="apple-about-page-cta">
+        <motion.div
+          className="apple-about-page-cta-inner"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 1, ease: APPLE_EASE }}
+        >
+          <span className="apple-eyebrow">Next</span>
+          <h2 className="apple-about-page-cta-title">
+            Want to build{' '}
+            <span className="apple-title-muted">something together?</span>
+          </h2>
+          <Link to="/contact" className="apple-about-page-cta-btn">
+            Get in touch
+            <FiArrowUpRight size={18} />
+          </Link>
+        </motion.div>
+      </section>
+    </div>
   );
 };
 

@@ -1,0 +1,370 @@
+/* ─────────────────────────────────────────────────────────────
+   Apple-style Experience Section (v2-apple)
+   Vertical timeline: date | rail (line + dot) | glass card.
+   Current role pulses + carries a "Now" badge.
+   ───────────────────────────────────────────────────────────── */
+
+.apple-experience {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #000000;
+  padding: 140px 24px 120px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #f5f5f7;
+  z-index: 6;
+  overflow: hidden;
+}
+
+.apple-experience-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.apple-experience .apple-about-header {
+  margin-bottom: 72px;
+}
+
+/* ─── Timeline container ────────────────────────────────── */
+
+.apple-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Item layout (3 columns: aside | rail | content) ───── */
+
+.apple-timeline-item {
+  display: grid;
+  grid-template-columns: 160px 32px 1fr;
+  gap: 0;
+  padding-bottom: 36px;
+  position: relative;
+}
+
+/* Per-item tint var */
+.apple-timeline-item[data-current="true"] { --tint: 10, 124, 255; }
+.apple-timeline-rail[data-tint="blue"],
+.apple-timeline-card[data-tint="blue"]   { --tint: 10, 124, 255; }
+.apple-timeline-rail[data-tint="purple"],
+.apple-timeline-card[data-tint="purple"] { --tint: 149, 100, 254; }
+.apple-timeline-rail[data-tint="teal"],
+.apple-timeline-card[data-tint="teal"]   { --tint: 64, 200, 224; }
+.apple-timeline-rail[data-tint="pink"],
+.apple-timeline-card[data-tint="pink"]   { --tint: 255, 89, 130; }
+.apple-timeline-rail[data-tint="green"],
+.apple-timeline-card[data-tint="green"]  { --tint: 48, 209, 88; }
+.apple-timeline-rail[data-tint="amber"],
+.apple-timeline-card[data-tint="amber"]  { --tint: 255, 159, 10; }
+.apple-timeline-rail[data-tint="silver"],
+.apple-timeline-card[data-tint="silver"] { --tint: 180, 180, 195; }
+
+/* ─── Date column ───────────────────────────────────────── */
+
+.apple-timeline-aside {
+  padding-top: 26px;
+  padding-right: 24px;
+  text-align: right;
+}
+
+.apple-timeline-date {
+  font-size: 12px;
+  font-weight: 500;
+  color: #86868b;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Mobile-only date inside card — hidden on desktop */
+.apple-timeline-date-mobile {
+  display: none;
+}
+
+/* ─── Rail column ───────────────────────────────────────── */
+
+.apple-timeline-rail {
+  position: relative;
+}
+
+/* Full-height vertical line */
+.apple-timeline-rail::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: -36px; /* span into the gap to next item */
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-50%);
+}
+
+/* First item: line starts at the dot, not at the top */
+.apple-timeline-item:first-child .apple-timeline-rail::before {
+  top: 32px;
+}
+
+/* Last item: line ends at the dot, not past it */
+.apple-timeline-item:last-child .apple-timeline-rail::before {
+  bottom: auto;
+  height: 32px;
+}
+
+/* The dot */
+.apple-timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(var(--tint), 1);
+  border: 3px solid #000;
+  box-shadow:
+    0 0 0 2px rgba(var(--tint), 0.25),
+    0 0 18px rgba(var(--tint), 0.5);
+  z-index: 2;
+}
+
+/* Pulsing ring around current item's dot */
+.apple-timeline-dot-pulse {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  transform: translate(-50%, 0);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--tint), 0.6);
+  pointer-events: none;
+  animation: appleDotPulse 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  z-index: 1;
+}
+
+@keyframes appleDotPulse {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, 0) scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* ─── Content column ────────────────────────────────────── */
+
+.apple-timeline-content {
+  padding-left: 28px;
+}
+
+/* ─── Card ──────────────────────────────────────────────── */
+
+.apple-timeline-card {
+  position: relative;
+  padding: 26px 28px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* Subtle tinted wash in the top-left so each card carries its color */
+.apple-timeline-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 60% 50% at 0% 0%,
+    rgba(var(--tint), 0.10) 0%,
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+.apple-timeline-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(var(--tint), 0.28);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 16px 40px rgba(var(--tint), 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+/* ─── Card header ───────────────────────────────────────── */
+
+.apple-timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.apple-timeline-card-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.apple-timeline-company {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f5f5f7;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.apple-timeline-role {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #86868b;
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+}
+
+/* ─── "Now" badge ───────────────────────────────────────── */
+
+.apple-timeline-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(var(--tint), 1);
+  background: rgba(var(--tint), 0.12);
+  border: 1px solid rgba(var(--tint), 0.35);
+  padding: 4px 10px 4px 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.apple-timeline-now-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(var(--tint), 1);
+  box-shadow: 0 0 0 0 rgba(var(--tint), 0.6);
+  animation: appleNowPulse 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes appleNowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--tint), 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(var(--tint), 0);
+  }
+}
+
+/* ─── Bullets ───────────────────────────────────────────── */
+
+.apple-timeline-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.apple-timeline-bullets li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #c8c8cd;
+  letter-spacing: -0.005em;
+}
+
+.apple-timeline-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(var(--tint), 0.7);
+  transition: box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-timeline-card:hover .apple-timeline-bullets li::before {
+  box-shadow: 0 0 8px rgba(var(--tint), 0.6);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .apple-timeline-item {
+    grid-template-columns: 130px 28px 1fr;
+  }
+  .apple-timeline-content {
+    padding-left: 22px;
+  }
+}
+
+@media (max-width: 700px) {
+  .apple-experience {
+    padding: 100px 20px 80px;
+  }
+  .apple-experience .apple-about-header {
+    margin-bottom: 56px;
+  }
+  /* Hide date column, show date inside card instead */
+  .apple-timeline-item {
+    grid-template-columns: 24px 1fr;
+  }
+  .apple-timeline-aside {
+    display: none;
+  }
+  .apple-timeline-rail {
+    grid-column: 1;
+  }
+  .apple-timeline-content {
+    grid-column: 2;
+    padding-left: 18px;
+  }
+  .apple-timeline-date-mobile {
+    display: block;
+    margin-bottom: 8px;
+  }
+  .apple-timeline-card {
+    padding: 22px;
+  }
+  .apple-timeline-company {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .apple-experience {
+    padding: 80px 16px 64px;
+  }
+  .apple-timeline-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

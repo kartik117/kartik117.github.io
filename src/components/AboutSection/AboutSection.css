@@ -1,0 +1,324 @@
+/* ─────────────────────────────────────────────────────────────
+   Apple-style About Section (v2-apple)
+   Dark stage, glassmorphic cards, animated counters.
+   ───────────────────────────────────────────────────────────── */
+
+.apple-about {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #000000;
+  padding: 140px 24px 120px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #f5f5f7;
+  z-index: 9;
+  overflow: hidden;
+}
+
+/* Subtle ambient glow at the top edge — continues the keynote stage feel */
+.apple-about::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 400px;
+  background: radial-gradient(
+    ellipse 50% 50% at 50% 100%,
+    rgba(0, 113, 227, 0.10) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.apple-about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ─── Header ────────────────────────────────────────────── */
+
+.apple-about-header {
+  margin-bottom: 80px;
+  text-align: left;
+  max-width: 800px;
+}
+
+.apple-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #86868b;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.apple-section-title {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #c8c8cd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-wrap: balance;
+}
+
+.apple-title-muted {
+  background: linear-gradient(180deg, #86868b 0%, #5a5a5e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Grid ──────────────────────────────────────────────── */
+
+.apple-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ─── Glass card base ───────────────────────────────────── */
+
+.apple-glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.apple-glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.apple-glass-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ─── Bio card ──────────────────────────────────────────── */
+
+.apple-bio-card {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.apple-bio-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.apple-bio-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #1a1a1c;
+}
+
+.apple-bio-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apple-bio-id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.apple-bio-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #f5f5f7;
+  letter-spacing: -0.01em;
+}
+
+.apple-bio-role {
+  font-size: 14px;
+  font-weight: 400;
+  color: #86868b;
+  letter-spacing: -0.005em;
+}
+
+.apple-bio-sep {
+  color: #4a4a4e;
+  margin: 0 0.3em;
+}
+
+.apple-bio-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.apple-bio-body p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #c8c8cd;
+  letter-spacing: -0.005em;
+}
+
+.apple-bio-lead {
+  font-size: 17px !important;
+  color: #f5f5f7 !important;
+  font-weight: 400;
+  line-height: 1.5 !important;
+}
+
+/* ─── Text link ─────────────────────────────────────────── */
+
+.apple-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2997ff; /* Apple link blue on dark */
+  text-decoration: none;
+  letter-spacing: -0.005em;
+  align-self: flex-start;
+  transition:
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-text-link svg {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-text-link:hover {
+  color: #4ba6ff;
+}
+
+.apple-text-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ─── Stat grid ─────────────────────────────────────────── */
+
+.apple-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+}
+
+.apple-stat-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 170px;
+}
+
+.apple-stat-number {
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(180deg, #ffffff 0%, #b8b8bd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.apple-stat-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #f5f5f7;
+  letter-spacing: -0.01em;
+  margin-top: auto;
+}
+
+.apple-stat-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: #86868b;
+  letter-spacing: -0.005em;
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  .apple-about {
+    padding: 100px 20px 80px;
+  }
+  .apple-about-header {
+    margin-bottom: 56px;
+  }
+  .apple-about-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .apple-bio-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 540px) {
+  .apple-about {
+    padding: 80px 16px 64px;
+  }
+  .apple-stats-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .apple-stat-card {
+    min-height: auto;
+    padding: 22px;
+  }
+  .apple-bio-card {
+    padding: 24px;
+  }
+  .apple-bio-body p {
+    font-size: 14px;
+  }
+  .apple-bio-lead {
+    font-size: 16px !important;
+  }
+}

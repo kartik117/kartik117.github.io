@@ -1,0 +1,468 @@
+/* ─────────────────────────────────────────────────────────────
+   Apple-style Projects Section (v2-apple)
+   Hero feature card + 2x2 grid of glassmorphic project cards.
+   Each card has a tinted ambient gradient driven by --tint.
+   ───────────────────────────────────────────────────────────── */
+
+.apple-projects {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #000000;
+  padding: 140px 24px 120px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #f5f5f7;
+  z-index: 7;
+  overflow: hidden;
+}
+
+.apple-projects-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.apple-projects .apple-about-header {
+  margin-bottom: 56px;
+}
+
+/* Header row puts the title left and "See all work" CTA right */
+.apple-projects-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.apple-projects-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2997ff;
+  text-decoration: none;
+  letter-spacing: -0.005em;
+  padding-bottom: 10px;
+  transition:
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-projects-see-all svg {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-projects-see-all:hover {
+  color: #4ba6ff;
+}
+
+.apple-projects-see-all:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* ─── Per-card color tints (Apple system palette) ──────── */
+
+.apple-project-hero[data-tint="blue"],
+.apple-project-card[data-tint="blue"]   { --tint: 10, 124, 255; }
+.apple-project-hero[data-tint="purple"],
+.apple-project-card[data-tint="purple"] { --tint: 149, 100, 254; }
+.apple-project-hero[data-tint="teal"],
+.apple-project-card[data-tint="teal"]   { --tint: 64, 200, 224; }
+.apple-project-hero[data-tint="pink"],
+.apple-project-card[data-tint="pink"]   { --tint: 255, 89, 130; }
+.apple-project-hero[data-tint="green"],
+.apple-project-card[data-tint="green"]  { --tint: 48, 209, 88; }
+.apple-project-hero[data-tint="amber"],
+.apple-project-card[data-tint="amber"]  { --tint: 255, 159, 10; }
+
+/* ─── Hero Project Card ─────────────────────────────────── */
+
+.apple-project-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  isolation: isolate;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  transition:
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  min-height: 480px;
+}
+
+/* Tinted glow border drawn via mask compositing */
+.apple-project-hero::after,
+.apple-project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--tint), 0.4) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(var(--tint), 0.1) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 3;
+}
+
+.apple-project-hero:hover,
+.apple-project-card:hover {
+  transform: scale(1.015) translateY(-3px);
+  border-color: rgba(var(--tint), 0.32);
+  box-shadow:
+    0 24px 60px rgba(var(--tint), 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+.apple-project-hero:hover::after,
+.apple-project-card:hover::after {
+  opacity: 1;
+}
+
+/* Image side */
+.apple-project-hero-image {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100%;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-project-hero:hover .apple-project-hero-image {
+  transform: scale(1.04);
+}
+
+/* Subtle tinted overlay on the image to unify with the card's tint */
+.apple-project-hero-image-tint {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 60%,
+      rgba(0, 0, 0, 0.45) 100%
+    ),
+    radial-gradient(
+      ellipse at top left,
+      rgba(var(--tint), 0.18) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+/* Content side */
+.apple-project-hero-content {
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Ambient tint glow behind the content side */
+.apple-project-hero-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 70% 60% at 100% 0%,
+    rgba(var(--tint), 0.16) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.apple-project-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(var(--tint), 0.95);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.apple-project-hero-title {
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #f5f5f7;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.apple-project-hero-description {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #a1a1a6;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+/* ─── Smaller Project Cards (2x2 grid) ──────────────────── */
+
+.apple-projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.apple-project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  transition:
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.apple-project-card-image {
+  position: relative;
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-project-card:hover .apple-project-card-image {
+  transform: scale(1.05);
+}
+
+.apple-project-card-image-tint {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    ),
+    radial-gradient(
+      ellipse at top right,
+      rgba(var(--tint), 0.22) 0%,
+      transparent 55%
+    );
+  pointer-events: none;
+}
+
+.apple-project-card-content {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  position: relative;
+}
+
+/* Subtle tinted bottom-corner glow on the content */
+.apple-project-card-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 60% 50% at 100% 100%,
+    rgba(var(--tint), 0.10) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.apple-project-card-title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #f5f5f7;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.apple-project-card-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #a1a1a6;
+  margin: 0;
+  letter-spacing: -0.005em;
+  flex: 1;
+}
+
+/* ─── Tech tags ─────────────────────────────────────────── */
+
+.apple-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.apple-project-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #c8c8cd;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition:
+    background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-project-hero:hover .apple-project-tag,
+.apple-project-card:hover .apple-project-tag {
+  background: rgba(var(--tint), 0.10);
+  border-color: rgba(var(--tint), 0.25);
+  color: #ffffff;
+}
+
+/* ─── CTA chips ─────────────────────────────────────────── */
+
+.apple-project-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  align-self: flex-start;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  border-radius: 999px;
+  letter-spacing: -0.005em;
+  margin-top: 8px;
+  text-decoration: none;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition:
+    background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-project-chip svg {
+  flex-shrink: 0;
+}
+
+.apple-project-chip-proprietary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: #86868b;
+}
+
+.apple-project-chip-link {
+  background: rgba(var(--tint), 0.10);
+  border: 1px solid rgba(var(--tint), 0.28);
+  color: #ffffff;
+}
+
+.apple-project-chip-link:hover {
+  background: rgba(var(--tint), 0.20);
+  border-color: rgba(var(--tint), 0.5);
+  transform: translateY(-2px);
+}
+
+.apple-project-chip-arrow {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-project-chip-link:hover .apple-project-chip-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  .apple-projects {
+    padding: 100px 20px 80px;
+  }
+  .apple-project-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .apple-project-hero-image {
+    height: 260px;
+  }
+  .apple-project-hero-content {
+    padding: 32px;
+  }
+  .apple-project-card-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .apple-projects {
+    padding: 80px 16px 64px;
+  }
+  .apple-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .apple-project-hero {
+    margin-bottom: 20px;
+    border-radius: 22px;
+  }
+  .apple-project-hero-image {
+    height: 220px;
+  }
+  .apple-project-hero-content {
+    padding: 26px;
+  }
+  .apple-project-card {
+    border-radius: 22px;
+  }
+  .apple-project-card-image {
+    height: 180px;
+  }
+  .apple-project-card-content {
+    padding: 22px;
+  }
+  .apple-project-card-title {
+    font-size: 19px;
+  }
+  .apple-project-hero-title {
+    font-size: 26px;
+  }
+}

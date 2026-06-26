@@ -1,17 +1,26 @@
-.kb-hero {
+/* ─────────────────────────────────────────────────────────────
+   Apple-style Hero (v2-apple)
+   Deep black stage, floating 3D mesh, SF Pro typography.
+   ───────────────────────────────────────────────────────────── */
+
+.apple-hero {
   position: relative;
   min-height: 100vh;
   width: 100vw;
-  margin-left: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw); /* break out of any parent padding */
   background: #000000;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   z-index: 10;
 }
 
+/* 3D canvas layer */
 .hero-3d-layer {
   position: absolute;
   inset: 0;
@@ -24,31 +33,37 @@
   display: block;
 }
 
+/* Soft radial glow behind/around the mesh — keynote stage light */
 .hero-glow {
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: radial-gradient(
-    ellipse 60% 50% at 50% 50%,
-    rgba(91, 91, 246, 0.25) 0%,
-    rgba(139, 140, 248, 0.1) 30%,
-    transparent 65%
-  );
+  background:
+    radial-gradient(
+      ellipse 60% 50% at 50% 50%,
+      rgba(0, 113, 227, 0.22) 0%,
+      rgba(0, 198, 255, 0.10) 30%,
+      transparent 65%
+    );
   mix-blend-mode: screen;
 }
 
+/* Vignette darkens edges so the mesh feels framed */
 .hero-vignette {
   position: absolute;
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  background: radial-gradient(
-    ellipse 90% 80% at 50% 50%,
-    transparent 40%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
+  background:
+    radial-gradient(
+      ellipse 90% 80% at 50% 50%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
 }
+
+/* ─── Text content ──────────────────────────────────────── */
 
 .hero-content {
   position: relative;
@@ -57,14 +72,14 @@
   padding: 0 24px;
   max-width: 1100px;
   width: 100%;
-  pointer-events: none;
+  pointer-events: none; /* let mouse pass through to canvas */
 }
 
 .hero-content > * {
   pointer-events: auto;
 }
 
-.kb-hero-eyebrow {
+.apple-hero-eyebrow {
   display: inline-block;
   font-size: 13px;
   font-weight: 500;
@@ -74,12 +89,14 @@
   margin-bottom: 28px;
 }
 
-.kb-hero-title {
+.apple-hero-title {
   font-size: clamp(56px, 9vw, 112px);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.035em;
   margin: 0 0 22px;
+  color: #f5f5f7;
+  /* subtle vertical gradient on the title for the polished keynote feel */
   background: linear-gradient(180deg, #ffffff 0%, #b8b8bd 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -87,9 +104,8 @@
   text-wrap: balance;
 }
 
-.kb-hero-subtitle {
-  font-family: var(--font-body);
-  font-size: clamp(18px, 2vw, 24px);
+.apple-hero-subtitle {
+  font-size: clamp(20px, 2.1vw, 26px);
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: -0.01em;
@@ -97,13 +113,15 @@
   margin: 0 0 48px;
 }
 
-.kb-hero-subtitle .dot-sep {
+.apple-hero-subtitle .dot-sep {
   color: #5a5a5e;
   margin: 0 0.5em;
   font-weight: 300;
 }
 
-.kb-hero-cta-row {
+/* ─── CTAs ──────────────────────────────────────────────── */
+
+.apple-hero-cta-row {
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -111,43 +129,52 @@
   justify-content: center;
 }
 
-.kb-cta-primary, .kb-cta-ghost {
-  font-family: var(--font-body);
+.apple-cta-primary,
+.apple-cta-ghost {
+  font-family: inherit;
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.005em;
   border-radius: 980px;
   padding: 12px 24px;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
 
-.kb-cta-primary {
-  background: linear-gradient(180deg, #6d6dfa 0%, #4040d0 100%);
+.apple-cta-primary {
+  background: linear-gradient(180deg, #0a7cff 0%, #0058c8 100%);
   color: #ffffff;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 8px 24px rgba(91, 91, 246, 0.35);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 8px 24px rgba(0, 113, 227, 0.35);
 }
 
-.kb-cta-primary:hover {
+.apple-cta-primary:hover {
   transform: scale(1.04);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 12px 36px rgba(91, 91, 246, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 12px 36px rgba(0, 113, 227, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-.kb-cta-primary svg {
+.apple-cta-primary svg {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.kb-cta-primary:hover svg {
+.apple-cta-primary:hover svg {
   transform: translateX(3px);
 }
 
-.kb-cta-ghost {
+.apple-cta-ghost {
   background: rgba(255, 255, 255, 0.04);
   color: #f5f5f7;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -155,13 +182,15 @@
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
-.kb-cta-ghost:hover {
+.apple-cta-ghost:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.22);
   transform: scale(1.04);
 }
 
-.kb-scroll-hint {
+/* ─── Scroll hint ───────────────────────────────────────── */
+
+.apple-scroll-hint {
   position: absolute;
   bottom: 36px;
   left: 50%;
@@ -183,32 +212,42 @@
   height: 36px;
   background: linear-gradient(180deg, #86868b 0%, transparent 100%);
   transform-origin: top;
-  animation: kbScrollPulse 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation: appleScrollPulse 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
-@keyframes kbScrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
-  50% { opacity: 1; transform: scaleY(1); }
+@keyframes appleScrollPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
 }
+
+/* ─── Responsive ────────────────────────────────────────── */
 
 @media (max-width: 768px) {
-  .kb-hero-title {
+  .apple-hero-title {
     font-size: clamp(44px, 11vw, 80px);
   }
-  .kb-hero-subtitle {
+  .apple-hero-subtitle {
     font-size: 17px;
     margin-bottom: 36px;
   }
-  .kb-hero-cta-row {
+  .apple-hero-cta-row {
     flex-direction: column;
     width: 100%;
     max-width: 320px;
   }
-  .kb-cta-primary, .kb-cta-ghost {
+  .apple-cta-primary,
+  .apple-cta-ghost {
     width: 100%;
     justify-content: center;
   }
-  .kb-scroll-hint {
+  .apple-scroll-hint {
     bottom: 24px;
   }
 }

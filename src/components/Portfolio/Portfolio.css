@@ -1,126 +1,199 @@
-.portfolio-container {
-  max-width: 1100px;
+/* ─────────────────────────────────────────────────────────────
+   Apple-style /portfolio page (v2-apple)
+   Hero header → segmented filter → grid of project cards.
+   Card styles are inherited from ProjectsSection.css
+   (.apple-project-card etc — bundled globally).
+   ───────────────────────────────────────────────────────────── */
+
+.apple-portfolio-page {
+  background: #000000;
+  color: #f5f5f7;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Inter", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Hero header ───────────────────────────────────────── */
+
+.apple-portfolio-hero {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 180px 24px 64px;
+  overflow: hidden;
+}
+
+.apple-portfolio-hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 50% 50% at 50% 30%,
+    rgba(10, 124, 255, 0.16) 0%,
+    rgba(0, 198, 255, 0.05) 35%,
+    transparent 65%
+  );
+}
+
+.apple-portfolio-hero-inner {
+  position: relative;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: var(--space-2xl);
-}
-
-.portfolio-container .page-header {
-  margin-bottom: var(--space-xl);
-}
-
-.portfolio-container .page-heading {
-  font-size: 2.2rem;
-  margin-top: var(--space-xs);
-}
-
-.filter-buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-2xl);
+  flex-direction: column;
+  gap: 48px;
 }
 
-.filter-buttons button {
-  border: 1px solid var(--color-border);
-  background: var(--color-background-alt);
-  color: var(--color-text);
-  border-radius: 980px;
-  padding: 8px 18px;
-  font-size: 0.88rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--duration-base) var(--ease-in-out);
+.apple-portfolio-title {
+  font-size: clamp(44px, 7vw, 88px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin: 12px 0 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #c8c8cd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-wrap: balance;
 }
 
-.filter-buttons button:hover {
-  border-color: var(--color-accent);
+.apple-portfolio-subtitle {
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.55;
+  color: #86868b;
+  letter-spacing: -0.005em;
+  margin: 0;
+  max-width: 640px;
 }
 
-.filter-buttons button.active {
-  background: var(--color-accent);
-  color: #fff;
-  border-color: var(--color-accent);
-}
+/* ─── Segmented filter ──────────────────────────────────── */
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg);
-}
-
-.project-item {
-  background: var(--color-background-alt);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  box-shadow: var(--shadow-sm);
-}
-
-.project-title-row {
-  display: flex;
+.apple-portfolio-filters {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-sm);
-}
-
-.project-title-row h3 {
-  font-size: 1.2rem;
-}
-
-.status-badge {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  padding: 3px 10px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  align-self: flex-start;
+  gap: 2px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.apple-portfolio-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.apple-portfolio-filter {
+  position: relative;
+  padding: 8px 18px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: #c8c8cd;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
   white-space: nowrap;
+  font-family: inherit;
+  transition:
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.status-in-progress {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
+.apple-portfolio-filter:hover {
+  color: #ffffff;
 }
 
-.status-planned {
-  background: rgba(91, 91, 246, 0.15);
-  color: var(--color-accent-light);
+.apple-portfolio-filter.active {
+  background: linear-gradient(180deg, #0a7cff 0%, #0058c8 100%);
+  color: #ffffff;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 4px 14px rgba(0, 113, 227, 0.35);
 }
 
-.project-details p {
-  font-size: 0.92rem;
-  margin-bottom: var(--space-md);
+/* ─── Project grid ──────────────────────────────────────── */
+
+.apple-portfolio-grid-section {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 60px 24px 140px;
 }
 
-.technologies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-bottom: var(--space-md);
+.apple-portfolio-grid-inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.tech-tag {
-  font-size: 0.78rem;
-  padding: 3px 10px;
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  color: var(--color-text-secondary);
+.apple-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.view-project {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.88rem;
-  color: var(--color-accent);
+/* The .apple-project-card / .apple-project-card-* styles come from
+   ProjectsSection.css (bundled globally). We only need to nudge a few
+   things specific to the portfolio grid context. */
+
+.apple-portfolio-card .apple-project-card-image {
+  height: 220px;
 }
 
-.no-link-tag {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
+.apple-portfolio-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-@media (max-width: 800px) {
-  .projects-grid {
+.apple-portfolio-empty {
+  text-align: center;
+  padding: 60px 0;
+  font-size: 15px;
+  color: #6e6e73;
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .apple-portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .apple-portfolio-hero {
+    padding: 140px 20px 48px;
+  }
+  .apple-portfolio-hero-inner {
+    gap: 36px;
+  }
+  .apple-portfolio-grid-section {
+    padding: 40px 20px 100px;
+  }
+}
+
+@media (max-width: 540px) {
+  .apple-portfolio-hero {
+    padding: 120px 16px 40px;
+  }
+  .apple-portfolio-grid-section {
+    padding: 32px 16px 80px;
+  }
+  .apple-portfolio-grid {
     grid-template-columns: 1fr;
+  }
+  .apple-portfolio-filter {
+    padding: 7px 14px;
+    font-size: 12.5px;
   }
 }

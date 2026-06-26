@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#260712"/><stop offset="1" stop-color="#ff5982"/></linearGradient></defs>
+  <rect width="1200" height="720" fill="url(#g)"/>
+  <path d="M600 165l285 105v185c0 120-115 190-285 250-170-60-285-130-285-250V270z" fill="none" stroke="#fff" stroke-width="8" opacity=".9"/>
+  <path d="M480 405l80 80 170-190" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="72" y="105" fill="#fff" font-size="58" font-family="Inter, Arial, sans-serif" font-weight="700">IntelliPatch</text>
+  <text x="72" y="160" fill="#fff" opacity=".72" font-size="26" font-family="Inter, Arial, sans-serif">Container security automation</text>
+</svg>

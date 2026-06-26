@@ -1,153 +1,408 @@
-.about-container {
-  max-width: 900px;
+/* ─────────────────────────────────────────────────────────────
+   Apple-style /about page (v2-apple)
+   Hero (text + headshot) → Journey chapters → Strengths bento → CTA
+   ───────────────────────────────────────────────────────────── */
+
+.apple-about-page {
+  background: #000000;
+  color: #f5f5f7;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Inter", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Hero ──────────────────────────────────────────────── */
+
+.apple-about-page-hero {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 180px 24px 120px;
+  background: #000000;
+  overflow: hidden;
+}
+
+.apple-about-page-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 50% 50% at 80% 30%,
+    rgba(10, 124, 255, 0.16) 0%,
+    rgba(0, 198, 255, 0.04) 35%,
+    transparent 65%
+  );
+}
+
+.apple-about-page-hero-inner {
+  position: relative;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: var(--space-2xl);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: center;
 }
 
-.about-container .page-header {
-  margin-bottom: var(--space-2xl);
-}
-
-.about-container .page-heading {
-  font-size: 2.2rem;
-  margin-top: var(--space-xs);
-}
-
-.intro-text {
-  font-size: 1.15rem;
-  color: var(--color-text);
-  font-weight: 500;
-}
-
-.section-subheading {
-  font-size: 1.3rem;
-  margin-top: var(--space-3xl);
-  margin-bottom: var(--space-lg);
-}
-
-.education-list {
+.apple-about-page-hero-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 20px;
 }
 
-.education-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: var(--space-md) 0;
-  border-bottom: 1px solid var(--color-border-light);
+.apple-about-page-title {
+  font-size: clamp(44px, 6.5vw, 84px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin: 12px 0 8px;
+  background: linear-gradient(180deg, #ffffff 0%, #c8c8cd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-wrap: balance;
 }
 
-.education-item h4 {
-  font-size: 1.05rem;
-  margin-bottom: 2px;
-}
-
-.education-item p {
-  font-size: 0.9rem;
+.apple-about-page-lead {
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.5;
+  color: #f5f5f7;
+  letter-spacing: -0.01em;
   margin: 0;
+  max-width: 600px;
 }
 
-.education-date {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
+.apple-about-page-lead-secondary {
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.55;
+  color: #86868b;
+  letter-spacing: -0.005em;
+  margin: 4px 0 0;
+  max-width: 600px;
+}
+
+/* Headshot */
+.apple-about-page-headshot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 380px;
+  justify-self: end;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #1a1a1c;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 30px 80px rgba(0, 113, 227, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+.apple-about-page-headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apple-about-page-headshot-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at top right,
+    rgba(10, 124, 255, 0.16) 0%,
+    transparent 50%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── Generic section scaffolding ────────────────────────── */
+
+.apple-about-page-journey,
+.apple-about-page-strengths,
+.apple-about-page-cta {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #000000;
+  padding: 120px 24px;
+  overflow: hidden;
+}
+
+.apple-about-page-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.apple-about-page-section-header {
+  margin-bottom: 72px;
+}
+
+/* ─── Journey chapters ──────────────────────────────────── */
+
+.apple-about-page-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 920px;
+}
+
+.apple-about-page-chapter {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.apple-about-page-chapter:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.apple-about-page-chapter-year {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #86868b;
+  padding-top: 10px;
   white-space: nowrap;
 }
 
-.timeline {
-  position: relative;
-  padding-left: var(--space-xl);
-  border-left: 2px solid var(--color-border);
+.apple-about-page-chapter-body h3 {
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #f5f5f7;
+  margin: 0 0 14px;
+  text-wrap: balance;
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: var(--space-2xl);
+.apple-about-page-chapter-body p {
+  font-size: 16px;
+  line-height: 1.62;
+  color: #c8c8cd;
+  letter-spacing: -0.005em;
+  margin: 0;
 }
 
-.timeline-dot {
-  position: absolute;
-  left: calc(-1 * var(--space-xl) - 6px);
-  top: 4px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  box-shadow: 0 0 0 4px var(--color-background);
-}
+/* ─── Strengths bento ───────────────────────────────────── */
 
-.timeline-date {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--color-accent);
-  margin-bottom: var(--space-xs);
-}
-
-.timeline-content h4 {
-  font-size: 1.05rem;
-  margin-bottom: var(--space-sm);
-}
-
-.timeline-content p {
-  font-size: 0.92rem;
-  margin: 0 0 var(--space-xs);
-}
-
-.skills-categories {
+.apple-about-page-strengths-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-xl);
+  gap: 20px;
 }
 
-.skills-category h4 {
-  font-size: 0.95rem;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-family: var(--font-mono);
+.apple-about-page-strength-card {
+  position: relative;
+  padding: 32px 30px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.apple-about-page-strength-card[data-tint="blue"]   { --tint: 10, 124, 255; }
+.apple-about-page-strength-card[data-tint="purple"] { --tint: 149, 100, 254; }
+.apple-about-page-strength-card[data-tint="pink"]   { --tint: 255, 89, 130; }
+.apple-about-page-strength-card[data-tint="green"]  { --tint: 48, 209, 88; }
+
+.apple-about-page-strength-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 90% 60% at 100% 0%,
+    rgba(var(--tint), 0.16) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.apple-about-page-strength-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--tint), 0.30);
+  box-shadow: 0 18px 48px rgba(var(--tint), 0.18);
+}
+
+.apple-about-page-strength-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--tint), 0.12);
+  border: 1px solid rgba(var(--tint), 0.25);
+  color: rgb(var(--tint));
+  margin-bottom: 4px;
+}
+
+.apple-about-page-strength-card h3 {
+  font-size: 20px;
   font-weight: 600;
+  letter-spacing: -0.018em;
+  color: #f5f5f7;
+  margin: 0;
+  line-height: 1.2;
 }
 
-.skills-grid {
+.apple-about-page-strength-card p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #a1a1a6;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+
+/* ─── CTA ───────────────────────────────────────────────── */
+
+.apple-about-page-cta {
+  padding: 140px 24px 160px;
+  text-align: center;
+}
+
+.apple-about-page-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 40% 40% at 50% 50%,
+    rgba(10, 124, 255, 0.14) 0%,
+    transparent 60%
+  );
+}
+
+.apple-about-page-cta-inner {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
 
-.skill-item {
-  font-size: 0.85rem;
-  padding: 4px 12px;
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
+.apple-about-page-cta-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #c8c8cd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-wrap: balance;
 }
 
-.cert-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
+.apple-about-page-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  background: linear-gradient(180deg, #0a7cff 0%, #0058c8 100%);
+  border-radius: 980px;
+  text-decoration: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 10px 32px rgba(0, 113, 227, 0.4);
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  margin-top: 8px;
 }
 
-.cert-item {
-  font-size: 0.85rem;
-  padding: 6px 14px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-accent-light);
-  color: var(--color-accent-light);
-  background: rgba(91, 91, 246, 0.12);
+.apple-about-page-cta-btn svg {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@media (max-width: 700px) {
-  .skills-categories {
+.apple-about-page-cta-btn:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 14px 40px rgba(0, 113, 227, 0.55);
+}
+
+.apple-about-page-cta-btn:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  .apple-about-page-hero {
+    padding: 140px 20px 80px;
+  }
+  .apple-about-page-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: left;
+  }
+  .apple-about-page-headshot {
+    max-width: 320px;
+    justify-self: start;
+  }
+  .apple-about-page-journey,
+  .apple-about-page-strengths {
+    padding: 100px 20px;
+  }
+  .apple-about-page-chapter {
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+  }
+  .apple-about-page-section-header {
+    margin-bottom: 56px;
+  }
+  .apple-about-page-cta {
+    padding: 100px 20px 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  .apple-about-page-hero {
+    padding: 120px 16px 64px;
+  }
+  .apple-about-page-headshot {
+    max-width: 260px;
+  }
+  .apple-about-page-journey,
+  .apple-about-page-strengths {
+    padding: 80px 16px;
+  }
+  .apple-about-page-chapter {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-bottom: 40px;
+  }
+  .apple-about-page-chapter-year {
+    padding-top: 0;
+  }
+  .apple-about-page-strengths-grid {
     grid-template-columns: 1fr;
   }
-
-  .education-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-xs);
+  .apple-about-page-cta {
+    padding: 80px 16px 96px;
   }
 }
