@@ -16,7 +16,7 @@ const HERO_PROJECT = {
   image: '/images/PA-Flow.gif',
   tags: ['LangGraph', 'FastAPI', 'pgvector', 'RAGAS', 'LangSmith'],
   tint: 'blue',
-  github: 'https://github.com/kartik117/pa-flow',
+  proprietary: true,
 };
 
 const PROJECTS = [

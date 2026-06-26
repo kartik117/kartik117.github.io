@@ -17,7 +17,7 @@ const PROJECTS = [
     image: '/images/PA-Flow.gif',
     categories: ['ai', 'be'],
     tags: ['LangGraph', 'FastAPI', 'pgvector', 'RAGAS', 'LangSmith'],
-    github: 'https://github.com/kartik117/pa-flow',
+    proprietary: true,
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ const PROJECTS = [
     image: '/images/medfinetune.png',
     categories: ['ai'],
     tags: ['QLoRA', 'vLLM', 'Mistral-7B', 'PyTorch'],
-    github: 'https://github.com/kartik117/med-fine-tune',
+    proprietary: true,
   },
   {
     id: 5,
