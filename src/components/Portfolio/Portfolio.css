@@ -4,11 +4,11 @@
   padding: var(--space-2xl);
 }
 
-.page-header {
+.portfolio-container .page-header {
   margin-bottom: var(--space-xl);
 }
 
-.page-heading {
+.portfolio-container .page-heading {
   font-size: 2.2rem;
   margin-top: var(--space-xs);
 }
@@ -23,8 +23,9 @@
 .filter-buttons button {
   border: 1px solid var(--color-border);
   background: var(--color-background-alt);
-  border-radius: var(--radius-md);
-  padding: 8px 16px;
+  color: var(--color-text);
+  border-radius: 980px;
+  padding: 8px 18px;
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
@@ -76,13 +77,13 @@
 }
 
 .status-in-progress {
-  background: rgba(245, 158, 11, 0.12);
-  color: #b45309;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
 }
 
 .status-planned {
-  background: rgba(91, 91, 246, 0.1);
-  color: var(--color-accent-dark);
+  background: rgba(91, 91, 246, 0.15);
+  color: var(--color-accent-light);
 }
 
 .project-details p {

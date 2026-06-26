@@ -1,8 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { featuredProjects } from '../../data/projects';
 import './Home.css';
+
+const Hero = lazy(() => import('../Hero/Hero'));
 
 const AnimatedCounter = ({ end, duration = 1.6, suffix = '', prefix = '', decimals = 0 }) => {
   const [count, setCount] = useState(0);
@@ -41,53 +43,9 @@ const impactStats = [
 const Home = () => {
   return (
     <div className="home-container">
-      <div className="gradient-mesh" aria-hidden="true" />
-
-      <section className="hero-section">
-        <div className="hero-columns">
-          <motion.div
-            className="hero-left"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <span className="hero-eyebrow">Software Engineer · Full-Stack &amp; Cloud Systems</span>
-            <div className="hero-name">
-              <span className="hero-name-line">KARTIK</span>
-              <span className="hero-name-line">BAMBLE</span>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="hero-right"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <h1 className="hero-display">
-              Building<br />
-              <span className="hero-display-accent">Production-Grade</span><br />
-              Software Systems
-            </h1>
-            <p className="hero-sub">
-              Full-stack engineer with experience shipping scalable Java/Spring Boot and
-              serverless AWS systems, plus a growing line of self-built AI agent, data
-              engineering, and dev-tooling projects — each one verified end-to-end, not
-              just unit-tested.
-            </p>
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="cta-buttons"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <Link to="/portfolio" className="primary-btn">View My Work</Link>
-          <Link to="/contact" className="secondary-btn">Get In Touch</Link>
-        </motion.div>
-      </section>
+      <Suspense fallback={<div className="hero-fallback" />}>
+        <Hero />
+      </Suspense>
 
       <motion.section
         className="impact-section"

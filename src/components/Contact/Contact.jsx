@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import './Contact.css';
 
 const Contact = () => {
@@ -12,35 +12,66 @@ const Contact = () => {
     >
       <div className="page-header">
         <span className="section-tag">CONTACT</span>
-        <h2 className="page-heading">Get In Touch</h2>
+        <h2 className="page-heading">Let's work together.</h2>
+        <p className="contact-intro">
+          Open to roles, collaborations, or just a good conversation about software,
+          data, and what's next. The fastest path is email.
+        </p>
       </div>
 
-      <motion.div
-        className="contact-content-centered"
+      <motion.a
+        href="mailto:kartikbamble117@gmail.com"
+        className="contact-cta"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div className="contact-info">
-          <h3>Let's Talk</h3>
-          <p>Reach out if you're hiring, have a question about one of these projects, or just want to connect.</p>
+        kartikbamble117@gmail.com ↗
+      </motion.a>
 
-          <div className="contact-details">
-            <div className="contact-item">
-              <FaEnvelope className="contact-icon" />
-              <a href="mailto:kartikbamble117@gmail.com">kartikbamble117@gmail.com</a>
-            </div>
-            <div className="contact-item">
-              <FaMapMarkerAlt className="contact-icon" />
-              <span>Redmond, WA</span>
-            </div>
+      <motion.div
+        className="contact-tiles"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <div className="contact-tile">
+          <FaEnvelope className="contact-tile-icon" />
+          <div>
+            <span className="contact-tile-label">Email</span>
+            <span className="contact-tile-value">kartikbamble117@gmail.com</span>
           </div>
+        </div>
+        <div className="contact-tile">
+          <FaPhone className="contact-tile-icon" />
+          <div>
+            <span className="contact-tile-label">Phone</span>
+            <span className="contact-tile-value">+1 (315) 374-0583</span>
+          </div>
+        </div>
+        <div className="contact-tile">
+          <FaMapMarkerAlt className="contact-tile-icon" />
+          <div>
+            <span className="contact-tile-label">Location</span>
+            <span className="contact-tile-value">Redmond, WA</span>
+          </div>
+        </div>
+      </motion.div>
 
-          <div className="social-links">
-            <a href="https://github.com/kartik117" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="GitHub">
-              <FaGithub />
-            </a>
-          </div>
+      <motion.div
+        className="find-elsewhere"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        <span className="section-tag">FIND ME ELSEWHERE</span>
+        <div className="social-links">
+          <a href="https://github.com/kartik117" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="GitHub">
+            <FaGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/kartik-bamble-721a00234/" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
+            <FaLinkedin />
+          </a>
         </div>
       </motion.div>
     </motion.div>

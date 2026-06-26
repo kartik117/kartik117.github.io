@@ -1,4 +1,4 @@
-import { FaGithub, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
@@ -8,6 +8,9 @@ const Footer = () => {
         <div className="footer-social">
           <a href="https://github.com/kartik117" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <FaGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/kartik-bamble-721a00234/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <FaLinkedin />
           </a>
           <a href="mailto:kartikbamble117@gmail.com" aria-label="Email">
             <FaEnvelope />

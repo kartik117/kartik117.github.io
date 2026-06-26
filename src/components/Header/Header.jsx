@@ -8,8 +8,8 @@ const Header = () => {
   const location = useLocation();
 
   const { scrollY } = useScroll();
-  const headerBg = useTransform(scrollY, [0, 80], ['rgba(250,250,250,0)', 'rgba(250,250,250,0.92)']);
-  const headerBorder = useTransform(scrollY, [0, 80], ['rgba(17,19,26,0)', 'rgba(17,19,26,0.08)']);
+  const headerBg = useTransform(scrollY, [0, 80], ['rgba(5,5,7,0)', 'rgba(8,8,11,0.85)']);
+  const headerBorder = useTransform(scrollY, [0, 80], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.08)']);
 
   const toggleMenu = () => setMenuOpen((open) => !open);
   const closeMenu = () => setMenuOpen(false);

@@ -50,15 +50,18 @@
 }
 
 .resume-link {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 6px 14px !important;
-  color: var(--color-text) !important;
+  background: linear-gradient(180deg, #6d6dfa 0%, #4040d0 100%);
+  border-radius: 980px;
+  padding: 7px 18px !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(91, 91, 246, 0.35);
+  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
 }
 
 .resume-link:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent) !important;
+  transform: scale(1.04);
+  color: #ffffff !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px rgba(91, 91, 246, 0.5);
 }
 
 .menu-toggle {
