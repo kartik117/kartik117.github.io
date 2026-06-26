@@ -1,0 +1,28 @@
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-2xl) var(--space-2xl) var(--space-xl);
+  text-align: center;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  font-size: 1.3rem;
+}
+
+.footer-social a {
+  color: var(--color-text-secondary);
+  transition: color var(--duration-base) var(--ease-in-out);
+}
+
+.footer-social a:hover {
+  color: var(--color-accent);
+}
+
+.footer-bottom p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
