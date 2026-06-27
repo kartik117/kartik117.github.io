@@ -129,6 +129,39 @@ const PROJECTS = [
     tags: ['Go', 'WebSockets', 'Redis', 'PostgreSQL', 'React'],
     github: 'https://github.com/kartik117/pixelwave',
   },
+  {
+    id: 12,
+    title: 'Provenance: Citation-Verified Research Assistant',
+    eyebrow: 'Multi-Agent RAG',
+    description:
+      'Multi-agent academic research assistant that searches papers, filters relevance, synthesizes findings, and verifies every claim against its cited source before showing the answer. Built with LangGraph, Gemini, FastAPI, Streamlit, PostgreSQL, and RAGAS evaluation.',
+    image: '/images/provenance.svg',
+    categories: ['ai', 'be', 'fs'],
+    tags: ['LangGraph', 'Gemini', 'FastAPI', 'RAGAS', 'PostgreSQL'],
+    github: 'https://github.com/kartik117/Provenance',
+  },
+  {
+    id: 13,
+    title: 'ESG Disclosure Analyzer',
+    eyebrow: 'AI · Document Intelligence',
+    description:
+      'Full-stack ESG disclosure analysis app with a Next.js frontend and FastAPI backend. Uploads corporate disclosures, supports optional Gemini-powered RAG, and provides analyst-friendly Q&A over extracted sustainability content.',
+    image: '/images/esg-disclosure.svg',
+    categories: ['ai', 'fs'],
+    tags: ['Next.js', 'FastAPI', 'Gemini', 'RAG', 'Vercel'],
+    github: 'https://github.com/kartik117/esg-disclosure-analyzer',
+  },
+  {
+    id: 14,
+    title: 'IoT Energy Optimization: Smart Home ML Pipeline',
+    eyebrow: 'IoT · ML Optimization',
+    description:
+      'AI-driven IoT system for residential energy optimization combining a smart-home simulator, AWS IoT telemetry pipeline, ML forecasting, rule-based optimization, Q-learning experiments, and a Streamlit dashboard. Reduced cost by 10.25% and peak power by 13.93% without new comfort violations.',
+    image: '/images/iot-energy.svg',
+    categories: ['ai', 'be'],
+    tags: ['AWS IoT', 'Python', 'scikit-learn', 'Streamlit', 'Q-learning'],
+    github: 'https://github.com/kartik117/iot-energy-optimization',
+  },
 ];
 
 const FILTERS = [
