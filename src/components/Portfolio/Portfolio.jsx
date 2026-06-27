@@ -96,6 +96,39 @@ const PROJECTS = [
     tags: ['Neo4j', 'LangChain', 'FastAPI', 'GitHub API'],
     github: 'https://github.com/kartik117/RepoMindMCP',
   },
+  {
+    id: 9,
+    title: 'TaskForge: Project & Task Management Platform',
+    eyebrow: 'Full-Stack · Auth',
+    description:
+      'Project and task management API and React kanban board built around a two-step OTP login — a password alone gets a user nowhere, a JWT is only minted after the matching email code is verified. Tested against a real in-memory MongoDB, not mocks.',
+    image: '/images/taskforge.png',
+    categories: ['be', 'fs'],
+    tags: ['Node.js', 'Express', 'MongoDB', 'React', 'JWT', 'Docker'],
+    github: 'https://github.com/kartik117/taskforge',
+  },
+  {
+    id: 10,
+    title: 'HuntQuest: Real-Time Map-Based Scavenger Hunt',
+    eyebrow: 'Real-Time · Geo',
+    description:
+      'Teams walk to real Seattle landmarks while everyone on the hunt watches every team\'s live position on a shared map; Redis GEOADD/GEOSEARCH marks a checkpoint "found" the instant a team\'s GPS enters its radius, fanned out across replicas via Redis pub/sub.',
+    image: '/images/huntquest.png',
+    categories: ['be', 'fs'],
+    tags: ['FastAPI', 'Redis', 'PostgreSQL', 'WebSockets', 'Kubernetes', 'React'],
+    github: 'https://github.com/kartik117/huntquest',
+  },
+  {
+    id: 11,
+    title: 'PixelWave: Real-Time Collaborative Pixel Board',
+    eyebrow: 'Real-Time · WebSockets',
+    description:
+      'An r/place-style shared 500x500 canvas where every paint from every connected user shows up on everyone else\'s screen in milliseconds — Go + gorilla/websocket fan-out through Redis BITFIELD and pub/sub, with Postgres as an append-only, replay-and-recovery-capable event log. Load-tested to 550 concurrent connections.',
+    image: '/images/pixelwave.png',
+    categories: ['be', 'fs'],
+    tags: ['Go', 'WebSockets', 'Redis', 'PostgreSQL', 'React'],
+    github: 'https://github.com/kartik117/pixelwave',
+  },
 ];
 
 const FILTERS = [
