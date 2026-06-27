@@ -148,6 +148,13 @@
   height: 220px;
 }
 
+/* Grid rows stretch by default, but the card itself was sized to its own
+   content instead of filling that stretched height -- different
+   description/tag lengths made same-row cards visibly uneven heights. */
+.apple-portfolio-card {
+  height: 100%;
+}
+
 .apple-portfolio-description {
   display: -webkit-box;
   -webkit-line-clamp: 4;
