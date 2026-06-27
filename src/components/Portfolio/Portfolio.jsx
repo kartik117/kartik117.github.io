@@ -135,7 +135,7 @@ const PROJECTS = [
     eyebrow: 'Multi-Agent RAG',
     description:
       'Multi-agent academic research assistant that searches papers, filters relevance, synthesizes findings, and verifies every claim against its cited source before showing the answer. Built with LangGraph, Gemini, FastAPI, Streamlit, PostgreSQL, and RAGAS evaluation.',
-    image: '/images/provenance.svg',
+    image: '/images/provenance.gif',
     categories: ['ai', 'be', 'fs'],
     tags: ['LangGraph', 'Gemini', 'FastAPI', 'RAGAS', 'PostgreSQL'],
     github: 'https://github.com/kartik117/Provenance',
