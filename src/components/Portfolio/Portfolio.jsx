@@ -146,7 +146,7 @@ const PROJECTS = [
     eyebrow: 'AI · Document Intelligence',
     description:
       'Full-stack ESG disclosure analysis app with a Next.js frontend and FastAPI backend. Uploads corporate disclosures, supports optional Gemini-powered RAG, and provides analyst-friendly Q&A over extracted sustainability content.',
-    image: '/images/esg-disclosure.svg',
+    image: '/images/esg-disclosure.png',
     categories: ['ai', 'fs'],
     tags: ['Next.js', 'FastAPI', 'Gemini', 'RAG', 'Vercel'],
     github: 'https://github.com/kartik117/esg-disclosure-analyzer',
