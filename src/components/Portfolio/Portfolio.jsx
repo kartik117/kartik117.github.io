@@ -157,7 +157,7 @@ const PROJECTS = [
     eyebrow: 'IoT · ML Optimization',
     description:
       'AI-driven IoT system for residential energy optimization combining a smart-home simulator, AWS IoT telemetry pipeline, ML forecasting, rule-based optimization, Q-learning experiments, and a Streamlit dashboard. Reduced cost by 10.25% and peak power by 13.93% without new comfort violations.',
-    image: '/images/iot-energy.svg',
+    image: '/images/iot-energy.png',
     categories: ['ai', 'be'],
     tags: ['AWS IoT', 'Python', 'scikit-learn', 'Streamlit', 'Q-learning'],
     github: 'https://github.com/kartik117/iot-energy-optimization',
