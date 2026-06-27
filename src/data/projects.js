@@ -43,21 +43,21 @@ export const projects = [
     id: 'medfinetune',
     title: 'MedFineTune',
     description:
-      'QLoRA fine-tuning of an open LLM on clinical QA data (PubMedQA + MedQA), served through a vLLM OpenAI-compatible endpoint — in progress.',
+      'QLoRA fine-tuning of an open LLM on clinical QA data (PubMedQA + MedQA), served through a vLLM OpenAI-compatible endpoint.',
     technologies: ['PyTorch', 'QLoRA', 'vLLM', 'Hugging Face'],
     github: null,
     categories: ['ai'],
-    status: 'in-progress',
+    status: 'live',
   },
   {
     id: 'dotboard',
     title: 'Dotboard',
     description:
-      'Real-time collaborative pixel-art board with a Go WebSocket server broadcasting live updates to concurrent users, with per-user rate limiting and persisted board state — up next.',
+      'Real-time collaborative pixel-art board with a Go WebSocket server broadcasting live updates to concurrent users, with per-user rate limiting and persisted board state.',
     technologies: ['Go', 'WebSockets'],
     github: null,
     categories: ['infra'],
-    status: 'planned',
+    status: 'live',
   },
 ];
 

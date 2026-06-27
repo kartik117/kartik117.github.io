@@ -6,7 +6,7 @@ My personal portfolio site — built with React + Vite, React Router, and Framer
 
 ## Pages
 
-- **Home** — intro, resume-sourced impact stats, featured projects
+- **Home** — intro, impact stats, featured projects
 - **About** — bio, education, work experience timeline, skills, certifications
 - **Portfolio** — every project I've shipped, filterable by category, linked to its real GitHub repo
 - **Contact** — email, location, GitHub
