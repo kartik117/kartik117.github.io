@@ -67,14 +67,6 @@ const Header = () => {
                 {label}
               </Link>
             ))}
-            <a
-              href="/Resume_Kartik_Bamble.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="apple-header-resume"
-            >
-              Resume
-            </a>
           </nav>
 
           <button
@@ -112,14 +104,6 @@ const Header = () => {
                   {label}
                 </Link>
               ))}
-              <a
-                href="/Resume_Kartik_Bamble.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="apple-header-mobile-link apple-header-mobile-resume"
-              >
-                Resume
-              </a>
             </nav>
           </motion.div>
         )}
