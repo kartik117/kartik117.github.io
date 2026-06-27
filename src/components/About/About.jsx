@@ -116,7 +116,7 @@ const About = () => {
             transition={{ duration: 1.1, delay: 0.2, ease: APPLE_EASE }}
           >
             <div className="apple-about-page-headshot-glow" aria-hidden="true" />
-            <img src="/images/headshot.png" alt="Kartik Bamble" />
+            <img src="/images/headshot.png?v=20260627" alt="Kartik Bamble" />
           </motion.div>
         </div>
       </section>

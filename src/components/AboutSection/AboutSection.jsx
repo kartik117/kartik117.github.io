@@ -101,7 +101,7 @@ const AboutSection = () => {
           >
             <div className="apple-bio-header">
               <div className="apple-bio-avatar">
-                <img src="/images/headshot.png" alt="Kartik Bamble" />
+                <img src="/images/headshot.png?v=20260627" alt="Kartik Bamble" />
               </div>
               <div className="apple-bio-id">
                 <div className="apple-bio-name">Kartik Bamble</div>
