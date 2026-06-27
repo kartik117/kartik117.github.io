@@ -88,8 +88,7 @@ const Hero = () => {
             <pointLight position={[-5, -3, -2]} color="#00c6ff" intensity={2.2} />
             <pointLight position={[0, 0, -4]} color="#0071e3" intensity={1.8} />
             <HeroMesh mouseRef={mouseRef} isMobile={isMobile} />
-            {/* Environment is what gives the metallic mesh its reflections —
-                without it the mesh renders near-black. Required on mobile too. */}
+            {/* Environment gives the metallic mesh its polished blue reflections on desktop and mobile. */}
             <Environment preset="city" />
           </Suspense>
         </Canvas>

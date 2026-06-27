@@ -52,7 +52,7 @@ const STRENGTHS = [
     icon: FiTarget,
     title: 'Systems thinker.',
     body:
-      'I design for failure, scale, and maintainability. Circuit breakers, dead letter queues, idempotency, tracing, and rollback paths matter as much as the happy path.',
+      'I design for resilience, scale, and maintainability. Circuit breakers, dead letter queues, idempotency, tracing, and rollback paths matter as much as the happy path.',
     tint: 'blue',
   },
   {
@@ -66,7 +66,7 @@ const STRENGTHS = [
     icon: FiCompass,
     title: 'Cloud-native builder.',
     body:
-      'AWS, Azure, GCP, Kubernetes, Terraform, and CI/CD are part of my everyday toolkit. I deploy systems to the cloud, not just localhost.',
+      'AWS, Azure, GCP, Kubernetes, Terraform, and CI/CD are part of my everyday toolkit. I deploy production-ready systems across cloud environments.',
     tint: 'purple',
   },
   {

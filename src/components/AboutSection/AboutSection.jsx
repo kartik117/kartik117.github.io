@@ -113,7 +113,7 @@ const AboutSection = () => {
 
             <div className="apple-bio-body">
               <p className="apple-bio-lead">
-                I build production-grade AI systems, distributed backends, and full-stack applications that solve complex real-world problems at scale.
+                I build production-grade AI systems, distributed backends, and full-stack applications that solve complex real-world challenges at scale.
               </p>
               <p>
                 Recently at the Commonwealth of Massachusetts, architecting agentic AI workflows on AWS with Bedrock, Lambda, SQS, OpenSearch, RAGAS, and LangSmith.

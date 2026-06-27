@@ -101,7 +101,7 @@ const PROJECTS = [
     title: 'TaskForge: Project & Task Management Platform',
     eyebrow: 'Full-Stack · Auth',
     description:
-      'Project and task management API and React kanban board built around a two-step OTP login — a password alone gets a user nowhere, a JWT is only minted after the matching email code is verified. Tested against a real in-memory MongoDB, not mocks.',
+      'Project and task management API and React kanban board built around a two-step OTP login. A JWT is minted only after the matching email code is verified, with integration coverage against an in-memory MongoDB test environment.',
     image: '/images/taskforge.png',
     categories: ['be', 'fs'],
     tags: ['Node.js', 'Express', 'MongoDB', 'React', 'JWT', 'Docker'],
@@ -145,7 +145,7 @@ const PROJECTS = [
     title: 'ESG Disclosure Analyzer',
     eyebrow: 'AI · Document Intelligence',
     description:
-      'Full-stack ESG disclosure analysis app with a Next.js frontend and FastAPI backend. Uploads corporate disclosures, supports optional Gemini-powered RAG, and provides analyst-friendly Q&A over extracted sustainability content.',
+      'Full-stack ESG disclosure analysis app with a Next.js frontend and FastAPI backend. Uploads corporate disclosures, applies Gemini-powered RAG, and provides analyst-friendly Q&A over extracted sustainability content.',
     image: '/images/esg-disclosure.png',
     categories: ['ai', 'fs'],
     tags: ['Next.js', 'FastAPI', 'Gemini', 'RAG', 'Vercel'],
@@ -156,7 +156,7 @@ const PROJECTS = [
     title: 'IoT Energy Optimization: Smart Home ML Pipeline',
     eyebrow: 'IoT · ML Optimization',
     description:
-      'AI-driven IoT system for residential energy optimization combining a smart-home simulator, AWS IoT telemetry pipeline, ML forecasting, rule-based optimization, Q-learning experiments, and a Streamlit dashboard. Reduced cost by 10.25% and peak power by 13.93% without new comfort violations.',
+      'AI-driven IoT system for residential energy optimization combining a smart-home simulator, AWS IoT telemetry pipeline, ML forecasting, rule-based optimization, Q-learning experiments, and a Streamlit dashboard. Reduced cost by 10.25% and peak power by 13.93% while maintaining comfort constraints.',
     image: '/images/iot-energy.png',
     categories: ['ai', 'be'],
     tags: ['AWS IoT', 'Python', 'scikit-learn', 'Streamlit', 'Q-learning'],

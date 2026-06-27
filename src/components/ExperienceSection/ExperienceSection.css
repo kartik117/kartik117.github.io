@@ -104,12 +104,12 @@
   transform: translateX(-50%);
 }
 
-/* First item: line starts at the dot, not at the top */
+/* First item: line starts at the dot for cleaner timeline alignment */
 .apple-timeline-item:first-child .apple-timeline-rail::before {
   top: 32px;
 }
 
-/* Last item: line ends at the dot, not past it */
+/* Last item: line ends at the dot for cleaner timeline alignment */
 .apple-timeline-item:last-child .apple-timeline-rail::before {
   bottom: auto;
   height: 32px;
