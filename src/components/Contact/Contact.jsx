@@ -48,13 +48,13 @@ const Contact = () => {
         </motion.p>
 
         <motion.a
-          href="mailto:kartikbamble117@gmail.com"
+          href="mailto:kartikbamble7@gmail.com"
           className="apple-contact-page-email-cta"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.4, ease: APPLE_EASE }}
         >
-          <span>kartikbamble117@gmail.com</span>
+          <span>kartikbamble7@gmail.com</span>
           <FiArrowUpRight size={18} />
         </motion.a>
 
@@ -66,7 +66,7 @@ const Contact = () => {
           transition={{ duration: 0.9, delay: 0.55, ease: APPLE_EASE }}
         >
           <a
-            href="mailto:kartikbamble117@gmail.com"
+            href="mailto:kartikbamble7@gmail.com"
             className="apple-contact-page-detail"
             data-tint="blue"
           >
@@ -76,7 +76,7 @@ const Contact = () => {
             <div>
               <div className="apple-contact-page-detail-label">Email</div>
               <div className="apple-contact-page-detail-value">
-                kartikbamble117@gmail.com
+                kartikbamble7@gmail.com
               </div>
             </div>
           </a>

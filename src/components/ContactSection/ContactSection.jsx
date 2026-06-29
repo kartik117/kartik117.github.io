@@ -60,14 +60,14 @@ const ContactSection = () => {
         </motion.p>
 
         <motion.a
-          href="mailto:kartikbamble117@gmail.com"
+          href="mailto:kartikbamble7@gmail.com"
           className="apple-contact-email-cta"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.9, delay: 0.4, ease: APPLE_EASE }}
         >
-          <span>kartikbamble117@gmail.com</span>
+          <span>kartikbamble7@gmail.com</span>
           <FiArrowUpRight size={18} />
         </motion.a>
 
